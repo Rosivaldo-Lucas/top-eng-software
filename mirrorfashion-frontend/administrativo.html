@@ -5,26 +5,47 @@
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="css/reset.css">
 		<link rel="stylesheet" href="css/estilos.css">
+		<link rel="stylesheet" href="css/administrativo.css">
 		<script src="js/jquery.js"></script>
     </head>
     <body>
         <header class="container">
-			<img src="img/logo.png" alt="Mirror Fashion">
-			
-			<p class="sacola">
-				Nenhum item na sacola de compras
-			</p>
+			<a href="index.html">
+				<img src="img/logo.png" alt="Mirror Fashion">
+			</a>
 
 			<nav class="menu-opcoes">
 				<ul>
-					<li><a href="#">Sua Conta</a></li>
-					<li><a href="#">Lista de Desejos</a></li>
-					<li><a href="#">Cartão Fidelidade</a></li>
-					<li><a href="sobre.html">Sobre</a></li>
-					<li><a href="#">Ajuda</a></li>
+					<li><a href="index.html">Home</a></li>
 					<li><a href="administrativo.html">Administrativo</a></li>
 				</ul>
 			</nav>
 		</header>
+
+		<main>
+			<section class="container">
+				<h1>CADASTRO DE PRODUTO</h1>
+				<form>
+					<label for="nome">Nome:</label><br>
+					<input type="text" id="nome" name="nome"><br><br>
+
+					<label for="categoria">Categoria:</label><br>
+					<input type="text" id="categoria" name="categoria"><br><br>
+
+					<label for="preco">Preço:</label><br>
+					<input type="number" id="preco" name="preco" step="0.01" min="0"><br><br>
+
+					<label for="descricao">Descrição:</label><br>
+					<textarea id="descricao" name="descricao" rows="5"></textarea><br><br>
+
+					<label for="imagem">Imagem:</label><br>
+					<input type="file" id="imagem" name="imagem"><br><br>
+
+					<input type="submit" value="Salvar">
+					<input type="button" value="Cancelar" onclick="window.history.back();">
+				</form>
+			</section>
+		</main>
+
     </body>
 </html>
