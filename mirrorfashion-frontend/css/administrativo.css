@@ -17,6 +17,29 @@ h1 {
 	text-transform: uppercase;
 }
 
+form{
+	margin-bottom: 10px;
+	position: relative;
+}
+
+.esqueceu-senha{
+	position: absolute;
+	right: 0;
+	margin-right: 20px;
+}
+
+
+h2{
+	text-align: center;
+    margin-top: 10px;
+	margin-bottom: 20px;
+	font-size: 20px;
+	color: #008CBA;
+	text-shadow: 2px 2px #ccc;
+	
+	text-transform: uppercase;
+}
+
 form {
 	background-color: #fff;
 	padding: 20px;
