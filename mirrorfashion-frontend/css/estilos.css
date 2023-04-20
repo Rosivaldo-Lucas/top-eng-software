@@ -7,10 +7,6 @@ header {
 	position: relative;
 }
 
-.imagem{
-	margin-top: 10px;
-}
-
 .sacola {
 	background: url(../img/sacola.png) no-repeat top right;
 	font-size: 14px;
@@ -96,7 +92,6 @@ header {
 	width: 445px;
     flex-direction: row;
     flex-wrap: wrap;
-	position: relative;
 }
 
 .painel li {
@@ -304,9 +299,8 @@ footer .container {
 
 .painel button {
 	color: white;
-	position: absolute;
-	right: 0;
-	
+	position: relative;
+	margin-bottom: 10px;
 }
 .painel button:after {
 	/* elemento vazio */

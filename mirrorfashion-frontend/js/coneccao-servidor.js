@@ -1,14 +1,12 @@
 const imagesUrl = (page) => `https://picsum.photos/v2/list?limit=9&page=${page}`;
 
-let current = 1;
-
 const newPainel = (selector) => {
   const parent = document.querySelector(selector);
   const list = document.createElement("ol");
   parent.appendChild(list);
 
   let p = {
-    page: current,
+    page: 1,
     list: list 
   };
 
@@ -35,10 +33,10 @@ const newPainel = (selector) => {
       .catch(error => console.log(error));
 
   parent.querySelector("button").addEventListener("click", () => {
-    p.page++;
+    p.page += 1;
     p.render();
   });
-  current += 2;
+
   return p;
 }
 
