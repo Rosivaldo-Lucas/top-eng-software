@@ -1,58 +1,42 @@
-const sessaoNovidades = document.querySelector(".novidades");
-const maisVendidos = document.querySelector(".mais-vendidos");
+const imagesUrl = (page) => `https://picsum.photos/v2/list?limit=8&page=${page}`;
 
-const url = `https://picsum.photos/v2/list?limit=8`; // URL da API do Lorem Picsum
+const newPainel = (selector) => {
+  let p = {
+    page: 1,
+    element: document.querySelector(selector)
+  };
 
-fetch(url).then(response => {
-    return response.json();
-}).then(data => {
-    const listaItensNovidades = document.createElement("ol");
-    const listaItensMaisVendidos = document.createElement("ol");
+  p.render = () => 
+    fetch(imagesUrl(p.page)).then(response => response.json())
+      .then(data => {
+        const l = document.createElement("ol");
 
-    data.forEach(imagem => {
-        const itemLista = document.createElement("li");
-        const itemLink = document.createElement("a");
-        const itemFigure = document.createElement("figure");
-        const itemImage = document.createElement("img");
-        const itemFigcaption = document.createElement("figcaption");
+        data.forEach(imagem => {
+          const item = document.createElement("li");
+          item.innerHTML = 
+            `<a>
+              <figure>
+                <img class="imagem">
+                <figcaption></figcaption>
+              </figure>
+            </a>`
 
-        itemLink.href = "produto.html";
-        itemImage.src = imagem.download_url;
-        itemFigcaption.innerHTML = imagem.author;
+          item.querySelector("a").href = "produto.html";
+          item.querySelector("img").src = imagem.download_url;
+          item.querySelector("figcaption").innerHTML = imagem.author;
 
-        itemFigure.appendChild(itemImage);
-        itemFigure.appendChild(itemFigcaption);
-        itemLink.appendChild(itemFigure);
-        itemLista.appendChild(itemLink);
+          l.appendChild(item);
+        });
 
-        listaItensNovidades.appendChild(itemLista);
+        p.element.appendChild(l);
+      }).catch(error => console.log(error));
 
-        itemImage.classList.add("imagem");
-    });
+  p.element.querySelector("button").addEventListener("click", () => {
+    p.page += 1;
+    p.render();
+  });
 
-    data.forEach(imagem => {
-        const itemLista = document.createElement("li");
-        const itemLink = document.createElement("a");
-        const itemFigure = document.createElement("figure");
-        const itemImage = document.createElement("img");
-        const itemFigcaption = document.createElement("figcaption");
+  return p;
+}
 
-        itemLink.href = "produto.html";
-        itemImage.src = imagem.download_url;
-        itemFigcaption.innerHTML = imagem.author;
-
-        itemFigure.appendChild(itemImage);
-        itemFigure.appendChild(itemFigcaption);
-        itemLink.appendChild(itemFigure);
-        itemLista.appendChild(itemLink);
-
-        listaItensMaisVendidos.appendChild(itemLista);
-
-        itemImage.classList.add("imagem");
-    });
-
-    sessaoNovidades.appendChild(listaItensNovidades);
-    maisVendidos.appendChild(listaItensMaisVendidos);
-}).catch(error => {
-    console.log(error);
-});
+[newPainel(".novidades"), newPainel(".mais-vendidos")].forEach(p => p.render());
