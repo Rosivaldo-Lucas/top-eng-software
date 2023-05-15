@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: db-produtos
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: db-produtos
+    ports:
+      - "5432:5432"
+    volumes:
+      - db-produtos-volume:/var/lib/postgresql/data
+
+volumes:
+  db-produtos-volume:
