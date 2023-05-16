@@ -17,7 +17,6 @@ public class Produto {
             final Double valor,
             final Integer quantidade,
             final LocalDate dataCriacao) {
-        this.id = id;
         this.nome = nome;
         this.descricao = descricao;
         this.valor = valor;
