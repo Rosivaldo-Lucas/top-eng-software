@@ -1,8 +1,10 @@
 package br.com.topengsoftware.apiprodutos.domain.produto;
 
+import br.com.topengsoftware.apiprodutos.domain.produto.dto.CriarProdutoDTO;
+import br.com.topengsoftware.apiprodutos.domain.produto.dto.ProdutoDTO;
 import jakarta.persistence.*;
 
-import java.time.LocalDate;
+import java.time.OffsetDateTime;
 
 @Entity
 @Table(name = "produto")
@@ -25,12 +27,12 @@ public class Produto {
     private Integer quantidade;
 
     @Column(name = "data-criacao")
-    private LocalDate dataCriacao;
+    private OffsetDateTime dataCriacao;
 
     public Produto() {
     }
 
-    public Produto(Long id, String nome, String descricao, Double valor, Integer quantidade, LocalDate dataCriacao) {
+    public Produto(Long id, String nome, String descricao, Double valor, Integer quantidade, OffsetDateTime dataCriacao) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
@@ -39,12 +41,21 @@ public class Produto {
         this.dataCriacao = dataCriacao;
     }
 
-    public Produto(final String nome, final String descricao, final Double valor, final Integer quantidade) {
+    public Produto(String nome, String descricao, Double valor, Integer quantidade) {
         this.nome = nome;
         this.descricao = descricao;
         this.valor = valor;
         this.quantidade = quantidade;
-        this.dataCriacao = LocalDate.now();
+        this.dataCriacao = OffsetDateTime.now();
+    }
+
+    public Produto(CriarProdutoDTO criarProdutoDTO) {
+        this(criarProdutoDTO.nome(), criarProdutoDTO.descricao(),
+                criarProdutoDTO.valor(), criarProdutoDTO.quantidade());
+    }
+
+    public ProdutoDTO getProdutoDTO() {
+        return new ProdutoDTO(id, nome, descricao, valor, quantidade, dataCriacao);
     }
 
     public Long getId() {
@@ -87,11 +98,11 @@ public class Produto {
         this.quantidade = quantidade;
     }
 
-    public LocalDate getDataCriacao() {
+    public OffsetDateTime getDataCriacao() {
         return dataCriacao;
     }
 
-    public void setDataCriacao(LocalDate dataCriacao) {
+    public void setDataCriacao(OffsetDateTime dataCriacao) {
         this.dataCriacao = dataCriacao;
     }
 

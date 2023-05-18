@@ -33,7 +33,7 @@ public class ProdutoController {
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public ProdutoDTO buscar(@PathVariable Long id) {
-        return produtoService.buscar(id);
+        return produtoService.buscar(id).getProdutoDTO();
     }
 
     @Operation(summary = "Criar produto")
