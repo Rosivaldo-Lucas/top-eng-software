@@ -1,8 +1,8 @@
 package br.com.topengsoftware.apiprodutos.domain.produto;
 
-import br.com.topengsoftware.apiprodutos.domain.produto.dto.ProdutoInput;
-import br.com.topengsoftware.apiprodutos.domain.produto.dto.ProdutoOutput;
-import br.com.topengsoftware.apiprodutos.domain.produto.exception.OperacaoNaoPermitida;
+import br.com.topengsoftware.apiprodutos.domain.produto.dto.CriarProdutoDTO;
+import br.com.topengsoftware.apiprodutos.domain.produto.dto.ProdutoDTO;
+import br.com.topengsoftware.apiprodutos.domain.produto.exception.ProdutoNaoExiste;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,62 +13,33 @@ public class ProdutoService {
 
     private final ProdutoRepository produtoRepository;
 
-    public ProdutoService(final ProdutoRepository produtoRepository) {
+    public ProdutoService(ProdutoRepository produtoRepository) {
         this.produtoRepository = produtoRepository;
     }
 
-    public List<ProdutoOutput> listar() {
-        final List<ProdutoEntity> produtoEntities = this.produtoRepository.findAll();
-
-        return produtoEntities.stream().map((produtoEntity) ->
-                new ProdutoOutput(
-                        produtoEntity.getId(),
-                        produtoEntity.getNome(),
-                        produtoEntity.getDescricao(),
-                        produtoEntity.getValor(),
-                        produtoEntity.getQuantidade(),
-                        produtoEntity.getDataCriacao()
-        )).collect(Collectors.toList());
+    public List<ProdutoDTO> listar() {
+        return this.produtoRepository.findAll().stream().map(produto ->
+                new ProdutoDTO(produto.getId(), produto.getNome(), produto.getDescricao(), produto.getValor(),
+                        produto.getQuantidade(), produto.getDataCriacao())).collect(Collectors.toList());
     }
 
-    public ProdutoOutput buscar(final Long id) {
-        final ProdutoEntity produtoPersistido = this.produtoRepository.
-                findById(id)
-                .orElseThrow(() -> new OperacaoNaoPermitida(String.format("produto de id %s não encontrado.", id)));
+    public ProdutoDTO buscar(Long id) {
+        final Produto produtoPersistido = this.produtoRepository.findById(id).orElseThrow(() -> new ProdutoNaoExiste(id));
 
-        return ProdutoOutput.criar(
-                produtoPersistido.getId(),
-                produtoPersistido.getNome(),
-                produtoPersistido.getDescricao(),
-                produtoPersistido.getValor(),
-                produtoPersistido.getQuantidade(),
-                produtoPersistido.getDataCriacao()
-        );
+        return new ProdutoDTO(produtoPersistido.getId(), produtoPersistido.getNome(), produtoPersistido.getDescricao(),
+                produtoPersistido.getValor(), produtoPersistido.getQuantidade(), produtoPersistido.getDataCriacao());
     }
 
-    public ProdutoOutput criar(final ProdutoInput produtoInput) {
-        final Produto produtoCriado = Produto.criar(
-                produtoInput.nome(),
-                produtoInput.descricao(),
-                produtoInput.valor(),
-                produtoInput.quantidade()
-        );
-
-        final ProdutoEntity produtoPersistido = this.produtoRepository.save(produtoCriado.toProdutoEntity());
-
-        return ProdutoOutput.criar(
-                produtoPersistido.getId(),
-                produtoPersistido.getNome(),
-                produtoPersistido.getDescricao(),
-                produtoPersistido.getValor(),
-                produtoPersistido.getQuantidade(),
-                produtoPersistido.getDataCriacao()
-        );
+    public ProdutoDTO criar(CriarProdutoDTO criarProdutoDTO) {
+        Produto produto = new Produto(criarProdutoDTO.nome(), criarProdutoDTO.descricao(),
+                criarProdutoDTO.valor(), criarProdutoDTO.quantidade());
+        produto = this.produtoRepository.save(produto);
+        return new ProdutoDTO(produto.getId(), produto.getNome(), produto.getDescricao(),
+                produto.getValor(), produto.getQuantidade(), produto.getDataCriacao());
     }
 
-    public void deletar(final Long id) {
-        final ProdutoOutput produtoBuscado = this.buscar(id);
-
+    public void deletar(Long id) {
+        ProdutoDTO produtoBuscado = this.buscar(id);
         this.produtoRepository.deleteById(produtoBuscado.id());
     }
 

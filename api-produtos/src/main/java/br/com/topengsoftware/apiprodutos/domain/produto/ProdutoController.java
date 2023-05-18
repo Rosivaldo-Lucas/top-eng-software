@@ -1,7 +1,11 @@
 package br.com.topengsoftware.apiprodutos.domain.produto;
 
-import br.com.topengsoftware.apiprodutos.domain.produto.dto.ProdutoInput;
-import br.com.topengsoftware.apiprodutos.domain.produto.dto.ProdutoOutput;
+import br.com.topengsoftware.apiprodutos.domain.produto.dto.CriarProdutoDTO;
+import br.com.topengsoftware.apiprodutos.domain.produto.dto.ProdutoDTO;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,39 +15,41 @@ import java.util.List;
 @RestController
 @RequestMapping("/produtos")
 public class ProdutoController {
-
     private final ProdutoService produtoService;
 
-    public ProdutoController(final ProdutoService produtoService) {
+    public ProdutoController(ProdutoService produtoService) {
         this.produtoService = produtoService;
     }
 
+    @Operation(summary = "Listar produtos")
+    @ApiResponse(description = "Listagem de produtos", responseCode = "200")
     @GetMapping
-    public ResponseEntity<List<ProdutoOutput>> listar() {
-        final List<ProdutoOutput> produtos = this.produtoService.listar();
-
-        return ResponseEntity.status(HttpStatus.OK).body(produtos);
+    public List<ProdutoDTO> listar() {
+        return produtoService.listar();
     }
 
+    @Operation(summary = "Buscar produto por Id")
+    @ApiResponse(description = "Produto", responseCode = "200")
     @GetMapping("/{id}")
-    public ResponseEntity<ProdutoOutput> buscar(@PathVariable Long id) {
-        final ProdutoOutput produto = this.produtoService.buscar(id);
-
-        return ResponseEntity.status(HttpStatus.OK).body(produto);
+    @ResponseStatus(HttpStatus.OK)
+    public ProdutoDTO buscar(@PathVariable Long id) {
+        return produtoService.buscar(id);
     }
 
+    @Operation(summary = "Criar produto")
+    @ApiResponse(description = "Novo Produto Criado", responseCode = "201")
     @PostMapping
-    public ResponseEntity<ProdutoOutput> criar(@RequestBody final ProdutoInput produtoInput) {
-        final ProdutoOutput produtoCriado = this.produtoService.criar(produtoInput);
-
-        return ResponseEntity.status(HttpStatus.CREATED).body(produtoCriado);
+    @ResponseStatus(HttpStatus.CREATED)
+    public ResponseEntity<ProdutoDTO> criar(@RequestBody CriarProdutoDTO criarProdutoDTO) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(produtoService.criar(criarProdutoDTO));
     }
 
+    @Operation(summary = "Deletar produto")
+    @ApiResponse(description = "Produto Deletado", responseCode = "201", content = @Content(schema = @Schema()))
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletar(@PathVariable final Long id) {
-        this.produtoService.deletar(id);
-
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deletar(@PathVariable Long id) {
+        produtoService.deletar(id);
     }
 
 }

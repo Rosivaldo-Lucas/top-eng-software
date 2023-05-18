@@ -1,22 +1,37 @@
 package br.com.topengsoftware.apiprodutos.domain.produto;
 
+import jakarta.persistence.*;
+
 import java.time.LocalDate;
 
+@Entity
+@Table(name = "produto")
 public class Produto {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "nome")
     private String nome;
+
+    @Column(name = "descricao")
     private String descricao;
+
+    @Column(name = "valor")
     private Double valor;
+
+    @Column(name = "quantidade")
     private Integer quantidade;
+
+    @Column(name = "data-criacao")
     private LocalDate dataCriacao;
 
-    private Produto(
-            final String nome,
-            final String descricao,
-            final Double valor,
-            final Integer quantidade,
-            final LocalDate dataCriacao) {
+    public Produto() {
+    }
+
+    public Produto(Long id, String nome, String descricao, Double valor, Integer quantidade, LocalDate dataCriacao) {
+        this.id = id;
         this.nome = nome;
         this.descricao = descricao;
         this.valor = valor;
@@ -24,80 +39,60 @@ public class Produto {
         this.dataCriacao = dataCriacao;
     }
 
-    public static Produto criar(
-            final String nome,
-            final String descricao,
-            final Double valor,
-            final Integer quantidade
-    ) {
-        final LocalDate dataCricao = LocalDate.now();
-
-        final Produto produtoCriado = new Produto(
-                nome,
-                descricao,
-                valor,
-                quantidade,
-                dataCricao
-        );
-
-        return produtoCriado;
+    public Produto(final String nome, final String descricao, final Double valor, final Integer quantidade) {
+        this.nome = nome;
+        this.descricao = descricao;
+        this.valor = valor;
+        this.quantidade = quantidade;
+        this.dataCriacao = LocalDate.now();
     }
 
-    public Long obterId() {
-        return this.id;
+    public Long getId() {
+        return id;
     }
 
-    public String obterNome() {
-        return this.nome;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public String obterDescricao() {
-        return this.descricao;
+    public String getNome() {
+        return nome;
     }
 
-    public Double obterValor() {
-        return this.valor;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public Integer obterQuntidade() {
-        return this.quantidade;
+    public String getDescricao() {
+        return descricao;
     }
 
-    public LocalDate obterDataCriacao() {
-        return this.dataCriacao;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
-    public void atualizarNome(final String novoNome) {
-        this.nome = novoNome;
+    public Double getValor() {
+        return valor;
     }
 
-    public void atualizarDescricao(final String novaDescricao) {
-        this.descricao = novaDescricao;
+    public void setValor(Double valor) {
+        this.valor = valor;
     }
 
-    public void atualizarValor(final Double novoValor) {
-        this.valor = novoValor;
+    public Integer getQuantidade() {
+        return quantidade;
     }
 
-    public void incrementarQuantidade(final Integer quantidade) {
-        this.quantidade += quantidade;
+    public void setQuantidade(Integer quantidade) {
+        this.quantidade = quantidade;
     }
 
-    public void decrementarQuantidade(final Integer quantidade) {
-        this.quantidade -= quantidade;
+    public LocalDate getDataCriacao() {
+        return dataCriacao;
     }
 
-    public ProdutoEntity toProdutoEntity() {
-        final ProdutoEntity produtoEntity = new ProdutoEntity(
-                this.id,
-                this.nome,
-                this.descricao,
-                this.valor,
-                this.quantidade,
-                this.dataCriacao
-        );
-
-        return produtoEntity;
+    public void setDataCriacao(LocalDate dataCriacao) {
+        this.dataCriacao = dataCriacao;
     }
 
 }
