@@ -47,7 +47,7 @@ public class ProdutoController {
     @Operation(summary = "Deletar produto")
     @ApiResponse(description = "Produto Deletado", responseCode = "201", content = @Content(schema = @Schema()))
     @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @ResponseStatus(HttpStatus.OK)
     public void deletar(@PathVariable Long id) {
         produtoService.deletar(id);
     }

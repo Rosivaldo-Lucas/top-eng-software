@@ -1,7 +1,7 @@
 package br.com.topengsoftware.apiprodutos.domain.usuario;
 
-import br.com.topengsoftware.apiprodutos.domain.usuario.dto.UsuarioInput;
-import br.com.topengsoftware.apiprodutos.domain.usuario.dto.UsuarioOutput;
+import br.com.topengsoftware.apiprodutos.domain.usuario.dto.CriarUsuarioDTO;
+import br.com.topengsoftware.apiprodutos.domain.usuario.dto.UsuarioDTO;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -16,18 +16,18 @@ public class UsuarioService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public UsuarioOutput criar(final UsuarioInput usuarioInput) {
-        final String password = this.passwordEncoder.encode(usuarioInput.password());
+    public UsuarioDTO criar(final CriarUsuarioDTO criarUsuarioDTO) {
+        final String password = this.passwordEncoder.encode(criarUsuarioDTO.password());
 
         final Usuario novoUsuario = Usuario.criar(
-                usuarioInput.nome(),
-                usuarioInput.username(),
+                criarUsuarioDTO.nome(),
+                criarUsuarioDTO.username(),
                 String.valueOf(123)
         );
 
         final UsuarioEntity usuarioPersistido = this.usuarioRepository.save(novoUsuario.toUsuarioEntity());
 
-        return UsuarioOutput.criar(
+        return UsuarioDTO.criar(
                 usuarioPersistido.getId(),
                 usuarioPersistido.getNome(),
                 usuarioPersistido.getUsername(),
