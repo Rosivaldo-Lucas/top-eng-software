@@ -4,7 +4,7 @@ function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-black white tc pa3">
+    <footer className="white tc pa3 fixed bottom-0 left-0 right-0">
       <div>&copy; {currentYear} RMW Solutions | All rights reserved</div>
     </footer>
   );
