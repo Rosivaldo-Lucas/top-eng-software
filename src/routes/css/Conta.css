@@ -4,10 +4,13 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
-    max-width: 350px;
+    max-width: 400px;
     padding: 20px;
     border-radius: 20px;
     position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
   
   .title {
@@ -83,7 +86,6 @@
     cursor: text;
     transition: 0.3s ease;
   }
-  
   
   .form label .input:placeholder-shown + span {
     top: 15px;

@@ -1,7 +1,6 @@
 *{
   background-color: #222;
   color: aliceblue;
-  
 }
 
 body {
@@ -13,6 +12,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   display: flex;
   flex-direction: column;
+  
 }
 
 code {
