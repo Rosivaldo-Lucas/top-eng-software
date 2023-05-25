@@ -1,6 +1,7 @@
 *{
   background-color: #222;
   color: aliceblue;
+  
 }
 
 body {
@@ -10,6 +11,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  flex-direction: column;
 }
 
 code {
