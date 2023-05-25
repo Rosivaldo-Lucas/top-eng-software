@@ -1,0 +1,30 @@
+version: "3"
+
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: db-produtos
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: db-produtos
+    ports:
+      - "5432:5432"
+    volumes:
+      - db-produtos-volume:/var/lib/postgresql/data
+
+  swagger:
+    image: "swaggerapi/swagger-ui"
+    restart: always
+    environment:
+      - "URLS=[ { url: \"http://localhost:8080/v3/api-docs/api\", name: \"Backend\" } ]"
+    ports:
+      - "8081:8080"
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+
+
+volumes:
+  db-produtos-volume:
