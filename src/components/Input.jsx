@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Input({texto, type}) {
+function Input({texto, type='text'}) {
   return (
       <label>
           <input required placeholder="" 

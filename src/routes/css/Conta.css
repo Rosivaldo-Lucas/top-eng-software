@@ -1,4 +1,6 @@
-
+*{
+  align-items: center;
+}
 
 .form {
     display: flex;
@@ -8,9 +10,6 @@
     padding: 20px;
     border-radius: 20px;
     position: absolute;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%);
   }
   
   .title {
@@ -69,6 +68,7 @@
   .form label {
     position: relative;
   }
+
   
   .form label .input {
     width: 100%;
@@ -110,6 +110,7 @@
     border-radius: 10px;
     font-size: 16px;
     transform: .3s ease;
+    width: 100%;
   }
   
   .submit:hover {

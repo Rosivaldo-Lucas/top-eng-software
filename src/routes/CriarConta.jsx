@@ -14,9 +14,9 @@ function CriarConta() {
         <p className="message">Registre-se agora e obtenha acesso ao nosso app.</p>
         <div className="flex">
 
-          <Input texto={"Nome"} type={"text"} />
+          <Input texto={"Nome"} />
 
-          <Input texto={"Sobrenome"} type={"text"} />
+          <Input texto={"Sobrenome"}/>
         </div>
 
         <Input texto={"Email"} type={"email"} />

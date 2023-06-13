@@ -12,14 +12,14 @@ function Administrativo() {
         <p className="message">Registre o produto desejado.</p>
         <div className="flex">
 
-          <Input texto={"Nome do produto"} type={"text"} />
+          <Input texto={"Nome do produto"} />
 
-          <Input texto={"Valor"} type={"text"} />
+          <Input texto={"Valor"} />
         </div>
 
         <div className="flex">
 
-          <Input texto={"Descrição"} type={"text"} />
+          <Input texto={"Descrição"} />
 
           <Input texto={"Quantidade"} type={"text"} />
         </div>
