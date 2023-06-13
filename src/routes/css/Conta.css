@@ -98,9 +98,11 @@
     font-weight: 600;
   }
   
-  .form label .input:valid + span {
-    color: green;
+
+  .form label .input:invalid + span {
+    color: rgb(108, 144, 250)
   }
+
   
   .submit {
     border: none;
