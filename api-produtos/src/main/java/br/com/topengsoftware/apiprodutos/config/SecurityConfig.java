@@ -20,14 +20,15 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(authorized -> authorized
                         .requestMatchers(HttpMethod.DELETE, "/produtos/**").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.POST, "/produtos/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/produtos/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/produtos/**").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/usuarios").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/usuarios").permitAll()
                         .requestMatchers("/v3/api-docs/api").permitAll()
                         .anyRequest().denyAll())
                 .httpBasic()
                 .and()
                 .csrf().disable();
+
 
         return http.build();
     }
