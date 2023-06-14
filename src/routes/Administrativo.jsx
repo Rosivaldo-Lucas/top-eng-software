@@ -40,7 +40,7 @@ function Administrativo() {
     setIsSubmitting(true);
 
     // Envia a requisição POST usando Axios
-    axios.post('http://localhost:8080/produtos', produto)
+    axios.post('https://teste-backend-render.onrender.com/produtos', produto)
       .then(response => {
         console.log(response.data); // Exibe a resposta do backend
         setIsSuccess(true);
