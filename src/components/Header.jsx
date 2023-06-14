@@ -12,6 +12,7 @@ function Header() {
             <Link to="/sobre" className="link dim white mr4 mb3">Sobre</Link>
             <Link to="/ajuda" className="link dim white mr4 mb3">Ajuda</Link>
             <Link to="/administrativo" className="link dim white mr4 mb3">Administrativo</Link>
+            <Link to="/nossos-produtos" className="link dim white mr4 mb3">Nossos Produtos</Link>
           </nav>
         </div>
       </div>

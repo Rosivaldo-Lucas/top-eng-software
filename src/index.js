@@ -11,7 +11,8 @@ import ErrorPage from './routes/ErrorPage'
 import CriarConta from './routes/CriarConta';
 import Administrativo from './routes/Administrativo';
 import Sobre from './routes/Sobre';
-import EntrarConta from './routes/EntrarConta'
+import EntrarConta from './routes/EntrarConta';
+import Produtos from './routes/Produtos';
 
 
 // const router = createBrowserRouter([
@@ -56,6 +57,10 @@ const router = createBrowserRouter([
         path: "/sobre",
         element: <Sobre />,
       },
+      {
+        path: "/nossos-produtos",
+        element: <Produtos />,
+      },
     ]
   }
 ]);
@@ -63,7 +68,6 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    
     <RouterProvider router={router} />
   </React.StrictMode>
 );

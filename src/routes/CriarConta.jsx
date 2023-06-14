@@ -54,7 +54,7 @@ function CriarConta() {
     
     
     // Envia a requisição POST usando Axios
-    axios.post('https://teste-backend-render.onrender.com/produtos', usuario)
+    axios.post('https://teste-backend-render.onrender.com/usuarios', usuario)
       .then(response => {
         console.log(response.data); // Exibe a resposta do backend
         setIsSuccess(true);
@@ -69,7 +69,7 @@ function CriarConta() {
         setIsSuccess(false);
       });
 
-      setSenhaConfirmada(false);
+      //setSenhaConfirmada(false);
 
 
   };
