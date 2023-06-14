@@ -27,6 +27,8 @@ public class SecurityConfig {
                         .anyRequest().denyAll())
                 .httpBasic()
                 .and()
+                .cors()
+                .and()
                 .csrf().disable();
 
 
