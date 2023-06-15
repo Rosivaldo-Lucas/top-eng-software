@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
+
 import Input from '../components/Input';
 import ButtonSubmit from '../components/ButtonSubmit';
 import './css/Conta.css'
 
-import { Link } from 'react-router-dom';
+
 
 function Conta() {
+
+ 
   return (
     <div>
 
@@ -14,16 +18,14 @@ function Conta() {
         <p className="message">Faça o login agora e obtenha acesso ao nosso app.</p>
         
 
-        <Input texto={"Email"} type={"email"} />
+        <Input texto={"Usuário"}  />
         
         <Input texto={"Senha"} type={"password"} />
 
 
-        <ButtonSubmit texto={"Registrar"} />
+        <ButtonSubmit texto={"Entrar"} />
 
-        <p className="signin">
-          Ainda não possui uma conta? <Link to="/criar-conta">Registre-se aqui!</Link>
-        </p>
+       
       </form>
       
     </div>
