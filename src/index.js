@@ -8,7 +8,6 @@ import 'tachyons/css/tachyons.min.css'
 import Index from './routes/Index'
 import Ajuda from './routes/Ajuda';
 import ErrorPage from './routes/ErrorPage'
-import CriarConta from './routes/CriarConta';
 import Administrativo from './routes/Administrativo';
 import Sobre from './routes/Sobre';
 import EntrarConta from './routes/EntrarConta';
@@ -40,10 +39,6 @@ const router = createBrowserRouter([
       {
         path: "/ajuda",
         element: <Ajuda />,
-      },
-      {
-        path: "/criar-conta",
-        element: <CriarConta />,
       },
       {
         path: "/entrar-conta",

@@ -7,7 +7,7 @@ function App() {
   useEffect(() => {
     const fetchProdutos = async () => {
         try {
-        const response = await axios.get('https://teste-backend-render.onrender.com/produtos');
+        const response = await axios.get('http://localhost:8080/produtos');
         setProdutos(response.data);
         console.log(response.data)
         

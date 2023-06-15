@@ -20,6 +20,13 @@ function Administrativo() {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  const username = process.env.REACT_APP_LOGIN;
+  const password = process.env.REACT_APP_PASSWORD;
+  const token = btoa(`${username}:${password}`);
+  const headers = {
+    Authorization: `Basic ${token}`,
+  };
+
   const limparCampos = () => {
     setProduto({
       nome: '',
@@ -40,7 +47,7 @@ function Administrativo() {
     setIsSubmitting(true);
 
     // Envia a requisição POST usando Axios
-    axios.post('https://teste-backend-render.onrender.com/produtos', produto)
+    axios.post('http://localhost:8080/produtos', produto,  {headers} )
       .then(response => {
         console.log(response.data); // Exibe a resposta do backend
         setIsSuccess(true);
