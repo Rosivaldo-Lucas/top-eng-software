@@ -12,6 +12,10 @@
     position: absolute;
   }
   
+  .description{
+    margin-bottom: 70px;
+  }
+
   .title {
     font-size: 28px;
     font-weight: 600;
@@ -104,7 +108,7 @@
   }
 
   li{
-    margin-top: 5px;
+    margin-top: 15px;
   }
   
   .submit {

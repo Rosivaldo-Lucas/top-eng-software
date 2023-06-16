@@ -37,7 +37,7 @@ function Administrativo() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
+    limparCampos();
     if (isSubmitting) {
       return; // Se já estiver enviando uma requisição, não faça nada
     }
@@ -48,12 +48,13 @@ function Administrativo() {
     const headers = { Authorization: `Basic ${token}` };
 
     // Envia a requisição POST usando Axios
-    axios.post('http://localhost:8080/produtos', produto,  {headers} )
+    axios.post('https://backend-api-produtos.onrender.com/produtos', produto,  {headers} )
       .then(response => {
+        
         console.log(response.data); // Exibe a resposta do backend
         setIsSuccess(true);
         setIsError(false);
-        limparCampos();
+        
 
       })
       .catch(error => {

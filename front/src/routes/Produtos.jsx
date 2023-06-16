@@ -7,7 +7,7 @@ function App() {
   useEffect(() => {
     const fetchProdutos = async () => {
         try {
-        const response = await axios.get('http://localhost:8080/produtos');
+        const response = await axios.get('https://backend-api-produtos.onrender.com/produtos');
         setProdutos(response.data);
         console.log(response.data)
         
@@ -26,6 +26,8 @@ function App() {
       {produtos.map((produto) => (
           <li key={produto.id}>
             {produto.nome} - R${produto.valor}
+            <p className='description' >{produto.descricao} - 
+                            Quantidade: {produto.quantidade}</p>
           </li>
         ))}
       </ul>
