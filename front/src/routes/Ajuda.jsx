@@ -3,11 +3,9 @@ import React from 'react';
 function Ajuda() {
   return (
     <div>
-      <h1>Ajuda</h1>
-      <h1>Ajuda</h1>
-      <h1>Ajuda</h1>
-      <h1>Ajuda</h1>
-      <h1>Ajuda</h1>
+      <h1>Estamos ao passo de uma mensagem.</h1>
+      <h3>É só chamar</h3>
+      
     </div>
   );
 }

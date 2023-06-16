@@ -13,17 +13,6 @@ import Sobre from './routes/Sobre';
 import Produtos from './routes/Produtos';
 
 
-// const router = createBrowserRouter([
-//   {
-//     path: "/",
-//     element: <Index />,
-//   },
-//   {
-//     path: "/ajuda",
-//     element: <Ajuda />,
-//   },
-
-// ]);
 
 const router = createBrowserRouter([
   {
@@ -39,10 +28,6 @@ const router = createBrowserRouter([
         path: "/ajuda",
         element: <Ajuda />,
       },
-      // {
-      //   path: "/entrar-conta",
-      //   element: <EntrarConta />,
-      // },
       {
         path: "/administrativo",
         element: <Administrativo />
