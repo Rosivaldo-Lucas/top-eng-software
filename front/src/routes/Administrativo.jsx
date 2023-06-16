@@ -91,7 +91,7 @@ function Administrativo() {
 
         <div className="flex">
           <Input texto={"Usuario"} name={'user'} value={credentials.user} handleChange={handleChange1} />
-          <Input texto={"Senha"} name={'pass'} value={credentials.pass} handleChange={handleChange1} />
+          <Input texto={"Senha"} type='password' name={'pass'} value={credentials.pass} handleChange={handleChange1} />
         </div>
 
         <div className="flex">
