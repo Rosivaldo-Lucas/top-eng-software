@@ -10,7 +10,6 @@ import Ajuda from './routes/Ajuda';
 import ErrorPage from './routes/ErrorPage'
 import Administrativo from './routes/Administrativo';
 import Sobre from './routes/Sobre';
-import EntrarConta from './routes/EntrarConta';
 import Produtos from './routes/Produtos';
 
 
@@ -40,13 +39,13 @@ const router = createBrowserRouter([
         path: "/ajuda",
         element: <Ajuda />,
       },
-      {
-        path: "/entrar-conta",
-        element: <EntrarConta />,
-      },
+      // {
+      //   path: "/entrar-conta",
+      //   element: <EntrarConta />,
+      // },
       {
         path: "/administrativo",
-        element: <Administrativo />,
+        element: <Administrativo />
       },
       {
         path: "/sobre",

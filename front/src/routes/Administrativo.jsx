@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 
 import Input from '../components/Input';
@@ -6,7 +6,6 @@ import ButtonSubmit from '../components/ButtonSubmit';
 import './css/Conta.css'
 
 function Administrativo() {
-
   const [produto, setProduto] = useState({
     nome: '',
     valor: '',
@@ -20,12 +19,11 @@ function Administrativo() {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const username = process.env.REACT_APP_LOGIN;
-  const password = process.env.REACT_APP_PASSWORD;
-  const token = btoa(`${username}:${password}`);
-  const headers = {
-    Authorization: `Basic ${token}`,
-  };
+  const [credentials, setCredentials] = useState({
+    user: '',
+    pass: ''
+  });
+
 
   const limparCampos = () => {
     setProduto({
@@ -39,12 +37,15 @@ function Administrativo() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    
+
     if (isSubmitting) {
       return; // Se já estiver enviando uma requisição, não faça nada
     }
 
     setIsSubmitting(true);
+
+    const token = btoa(`${credentials.user}:${credentials.pass}`);
+    const headers = { Authorization: `Basic ${token}` };
 
     // Envia a requisição POST usando Axios
     axios.post('http://localhost:8080/produtos', produto,  {headers} )
@@ -61,8 +62,8 @@ function Administrativo() {
         setIsSuccess(false);
       });
 
-    
-      setIsSubmitting(false);
+
+    setIsSubmitting(false);
   };
 
   const handleChange = (event) => {
@@ -73,7 +74,13 @@ function Administrativo() {
     }));
   };
 
-
+  const handleChange1 = (event) => {
+    const { name, value } = event.target;
+    setCredentials(prevState => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
 
   return (
     <div>
@@ -81,27 +88,27 @@ function Administrativo() {
       <form className="form" onSubmit={handleSubmit}>
         <p className="title">Registro de produtos</p>
         <p className="message">Registre o produto desejado.</p>
+
         <div className="flex">
+          <Input texto={"Usuario"} name={'user'} value={credentials.user} handleChange={handleChange1} />
+          <Input texto={"Senha"} name={'pass'} value={credentials.pass} handleChange={handleChange1} />
+        </div>
 
+        <div className="flex">
           <Input texto={"Nome do produto"} name={'nome'} value={produto.nome} handleChange={handleChange} />
-
           <Input texto={"Valor"} name={'valor'} value={produto.valor} handleChange={handleChange} />
         </div>
 
         <div className="flex">
-
           <Input texto={"Descrição"} name={'descricao'} value={produto.descricao} handleChange={handleChange} />
-
           <Input texto={"Quantidade"} type={"text"} name={'quantidade'} value={produto.quantidade} handleChange={handleChange} />
         </div>
 
         <ButtonSubmit texto={"Registrar produto"} />
+
         {isSuccess && <p>Produto cadastrado com sucesso.</p>}
         {isError && <p>Ocorreu um erro, tente novamente.</p>}
-
-        
       </form>
-      
     </div>
   );
 }
