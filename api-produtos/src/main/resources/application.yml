@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/db-produtos
-    username: db-produtos
-    password: root
+    url: jdbc:postgresql://dpg-ci69mdtgkuvvgcd0t9vg-a.oregon-postgres.render.com/api_produtos_db
+    username: api_produtos_db_user
+    password: q9fncdYBqt6M9zKI1SACv4QGEWBxboO8
   jpa:
     properties:
       hibernate:
